@@ -20,8 +20,8 @@ const TestPage = () => {
           amount: amount * 100,
           reference,
           destination,
-          redirectUrl: "http://localhost:3000/success",
-          webHookUrl: "http://localhost:3000/api/monobank/webhook",
+          redirectUrl: "https://monobank-acquiring.vercel.app/success",
+          webHookUrl: "https://monobank-acquiring.vercel.app/api/monobank/webhook",
           basketOrder: [
             {
               name: "Service A",
