@@ -43,9 +43,9 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(invoice);
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to create invoice", details: error.message },
+      { error: "Failed to create invoice", details: error},
       { status: 500 }
     );
   }

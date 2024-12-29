@@ -12,8 +12,8 @@ export async function POST(req: Request) {
     const data = await handleWebhook(body);
 
     return NextResponse.json(data);
-  } catch (error: any) {
-    console.error("Webhook error:", error.message);
+  } catch (error) {
+    console.error("Webhook error:", error);
     return NextResponse.json(
       { error: "Failed to process webhook" },
       { status: 500 }
