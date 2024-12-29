@@ -35,6 +35,7 @@ const TestPage = () => {
       });
 
       const data = await response.json();
+
       if (response.ok) {
         window.location.href = data.pageUrl;
       } else {
