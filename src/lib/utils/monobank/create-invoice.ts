@@ -35,8 +35,8 @@ export const createInvoice = async (payload: CreateInvoicePayload) => {
       },
     });
     return response.data;
-  } catch (error: any) {
-    console.error("Monobank API error:", error.response?.data || error.message);
+  } catch (error) {
+    console.error("Monobank API error:", error);
     throw new Error("Failed to create invoice");
   }
 };
