@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 
+const URL_WEBHOOK = "https://2e27-80-49-199-226.ngrok-free.app";
+
 const TestPage = () => {
   const [amount, setAmount] = useState<number>(100);
   const [reference, setReference] = useState<string>("Order123");
@@ -13,26 +15,29 @@ const TestPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/monobank/create-invoice", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: amount * 100,
-          reference,
-          destination,
-          redirectUrl: "https://monobank-acquiring.vercel.app/success",
-          webHookUrl: "https://monobank-acquiring.vercel.app/api/monobank/webhook",
-          basketOrder: [
-            {
-              name: "Service A",
-              qty: 1,
-              sum: amount * 100,
-              total: amount * 100,
-              code: "service-a",
-            },
-          ],
-        }),
-      });
+      const response = await fetch(
+        `${URL_WEBHOOK}/api/monobank/create-invoice`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: amount * 100,
+            reference,
+            destination,
+            redirectUrl: `${URL_WEBHOOK}/success`,
+            webHookUrl: `${URL_WEBHOOK}/api/monobank/webhook`,
+            basketOrder: [
+              {
+                name: "Service A",
+                qty: 1,
+                sum: amount * 100,
+                total: amount * 100,
+                code: "service-a",
+              },
+            ],
+          }),
+        }
+      );
 
       const data = await response.json();
 
